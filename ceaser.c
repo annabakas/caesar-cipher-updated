@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #define SHIFTS 25
 #define DICTLINES 8732
@@ -12,21 +13,45 @@ int max_index;
 
 char dictWords[8732][100];
 char encryptedSentence[330];
-	//Reads dictionary2.txt and stores in array
-	//Check if decrypted word is in array of dictionary words
-	//If word is in dictionary, count occurrences of each shift and find max
+
+	int sort(){
+		FILE *fp;
+		fp = fopen("../dictionary2.txt", "r");
+		int i, j;
+		char temp[330];
+		for(int x = 0; x < DICTLINES; x++){
+			fscanf(fp, "%s", dictWords[x]);
+			//printf("%s\n", dictWords[x]);
+		}
+			
+		for(i = 0; i < DICTLINES - 1; i++){
+			for(j = i + 1; j < DICTLINES; j++){
+				if(strcmp(dictWords[i], dictWords[j]) > 0){
+					strcpy(temp, dictWords[i]);
+					strcpy(dictWords[i], dictWords[j]);
+					strcpy(dictWords[j], temp);
+				}
+			}
+		}
+		
+		/*for(int h=0; h<DICTLINES;h++){
+			printf("%s\n", dictWords[h]);
+		}*/
+
+		fclose(fp);
+		return 0;
+	}
+
 	int openDict(char *decrypted, int key){
 		//printf("%d %s\n", key, decrypted);
-		//char w[4] = "LETS";
-		
-		FILE *fp;
-		fp = fopen("dictionary2.txt", "r");
 		
 		int i, max, result, found;
 		
 		for(i=0; i < DICTLINES; i++){
+			//printf("%s\n", dictWords[i]);
+			
 			max = shifts[0];
-			fscanf(fp, "%s", dictWords[i]);
+			
 			result = strcmp(dictWords[i], decrypted);
 			if(result == 0){
 				shifts[key]++;
@@ -36,9 +61,10 @@ char encryptedSentence[330];
 				max_index = key;
 			}
 		}
-		fclose(fp);
+		
 		return 0;
 	}
+	
 
 	//Decrypts word(s) from sentences
 	//Passes decrypted word and key/shift to openDict() to check 
@@ -112,7 +138,12 @@ char encryptedSentence[330];
 
 		char buffer[330];
 		int count = 0;
-
+		
+		double time_spent = 0.0;
+		clock_t begin = clock();
+		
+		sort();
+			
 		while((fgets(buffer, 330, stdin)) != NULL){
 			count++;
 			printf("%d\n", count);
@@ -127,6 +158,12 @@ char encryptedSentence[330];
 				shifts[x] = 0;
 			}
 		}
+
+		clock_t end = clock();
+		time_spent+=(double)(end-begin) / CLOCKS_PER_SEC;
+
+		printf("Time elapsed is %f seconds\n", time_spent);
+
 
 		fclose(fp);
 		return 0;
