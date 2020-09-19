@@ -11,9 +11,10 @@
 char shifts[SHIFTS];
 int max_index;
 
-char dictWords[8732][100];
-char encryptedSentence[330];
+char dictWords[DICTLINES][100];
+char encryptedSentence[MAX_WORD_LENGTH];
 
+	//Opens dictionary2.txt and sorts it alphabetically using selection sort
 	int sort(){
 		FILE *fp;
 		fp = fopen("../dictionary2.txt", "r");
@@ -41,8 +42,12 @@ char encryptedSentence[330];
 		fclose(fp);
 		return 0;
 	}
+	
+	//Checks decrypted word against dictionary words
+	//If decrypted word is found in dictionary, increment shift key
+	//If shift key count is greater than 5, set that as max
 
-	int openDict(char *decrypted, int key){
+	int compare(char *decrypted, int key){
 		//printf("%d %s\n", key, decrypted);
 		
 		int i, max, result, found;
@@ -67,8 +72,7 @@ char encryptedSentence[330];
 	
 
 	//Decrypts word(s) from sentences
-	//Passes decrypted word and key/shift to openDict() to check 
-	//if it's in the dictionary
+	//Passes decrypted word and key/shift to compare() to check if it's an English word
 	char* decrypt(char *word){
 		//printf("\n%s\n", word);
 		char ch;
@@ -94,7 +98,7 @@ char encryptedSentence[330];
 				
 			}	
 			//printf("Shift Key: %d %s\n",key, decrypted);
-			openDict(decrypted, key);
+			compare(decrypted, key);
 		}
 		
 		free(decrypted);
@@ -102,7 +106,7 @@ char encryptedSentence[330];
 	}
 
 	//Takes in sentence from encrypted_text
-	//Splits sentence into words using strtok()
+	//Splits sentence into words at spaces
 	//Pass word to decrypt()
 	int split(char *l){
 		char word[TOTAL_WORDS][20];
@@ -131,12 +135,17 @@ char encryptedSentence[330];
 	}	
 
 
-	//Reads encrypted_text using getline()
+	//sort() opens and sorts dictionary2.txt
+	//Reads encrypted_text from stdin
+	//Passes each sentence to split() to split into words
+	//Writes best shifts to shifts.txt
+	//Resets shift counts after each sentence
+	//Prints time elapsed
 	int main(){
 		FILE *fp;
 		fp = fopen("shifts.txt", "w");
 
-		char buffer[330];
+		char buffer[MAX_WORD_LENGTH];
 		int count = 0;
 		
 		double time_spent = 0.0;
@@ -144,7 +153,7 @@ char encryptedSentence[330];
 		
 		sort();
 			
-		while((fgets(buffer, 330, stdin)) != NULL){
+		while((fgets(buffer, MAX_WORD_LENGTH, stdin)) != NULL){
 			count++;
 			printf("%d\n", count);
 			
