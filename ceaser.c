@@ -15,11 +15,13 @@ char dictWords[DICTLINES][100];
 char encryptedSentence[MAX_WORD_LENGTH];
 
 	//Opens dictionary2.txt and sorts it alphabetically using selection sort
+	//Compares word extracted by outer loop to all words below it
+	//If word above is alphabetically greater than word below, then swap the words
 	int sort(){
 		FILE *fp;
 		fp = fopen("../dictionary2.txt", "r");
 		int i, j;
-		char temp[330];
+		char temp[MAX_WORD_LENGTH];
 		for(int x = 0; x < DICTLINES; x++){
 			fscanf(fp, "%s", dictWords[x]);
 			//printf("%s\n", dictWords[x]);
@@ -42,11 +44,21 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		fclose(fp);
 		return 0;
 	}
-	
+
+
+	int stringCompare(char *dict, char *decrypted){
+		int result;
+		result = strcmp(dict, decrypted);
+		if(result == 0){
+			return 0;
+		}
+		else{
+			return 1;
+		}
+	}
 	//Checks decrypted word against dictionary words
 	//If decrypted word is found in dictionary, increment shift key
 	//If shift key count is greater than 5, set that as max
-
 	int compare(char *decrypted, int key){
 		//printf("%d %s\n", key, decrypted);
 		
@@ -54,16 +66,15 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		
 		for(i=0; i < DICTLINES; i++){
 			//printf("%s\n", dictWords[i]);
-			
 			max = shifts[0];
-			
-			result = strcmp(dictWords[i], decrypted);
-			if(result == 0){
+			//result = strcmp(dictWords[i], decrypted);
+			if(stringCompare(dictWords[i], decrypted) == 0){
 				shifts[key]++;
 				//printf("%d\n", shifts[key]);
-			}
-			if(shifts[key] > 5){
-				max_index = key;
+			
+				if(shifts[key] > 5){
+					max_index = key;
+				}
 			}
 		}
 		
@@ -76,26 +87,21 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	char* decrypt(char *word){
 		//printf("\n%s\n", word);
 		char ch;
-		
 		char *decrypted;
 		decrypted = malloc(MAX_WORD_LENGTH * sizeof *decrypted);
 		
 		for(int key = 1; key < 26; key++){
 			for(int i=0; word[i] != '\0'; ++i){
 				int k = 0;
-				
 				ch = word[i];
-
 				if(ch >= 'A' && ch <= 'Z'){
 					ch = ch - key;
-
 					if (ch < 'A'){
 						ch = ch + 'Z' - 'A' + 1;
 					}
 
 					 decrypted[i]= ch;
-				}
-				
+				}	
 			}	
 			//printf("Shift Key: %d %s\n",key, decrypted);
 			compare(decrypted, key);
@@ -125,7 +131,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 				j++;
 			}
 		}
-
 		for(i = 0; i < ctr; i++){
 			decrypt(word[i]);
 			//printf("%s\n", word[i]);
@@ -134,7 +139,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		return 0;
 	}	
 
-
+	
 	//sort() opens and sorts dictionary2.txt
 	//Reads encrypted_text from stdin
 	//Passes each sentence to split() to split into words
@@ -147,7 +152,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 
 		char buffer[MAX_WORD_LENGTH];
 		int count = 0;
-		
+
 		double time_spent = 0.0;
 		clock_t begin = clock();
 		
@@ -156,24 +161,21 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		while((fgets(buffer, MAX_WORD_LENGTH, stdin)) != NULL){
 			count++;
 			printf("%d\n", count);
-			
 			split(buffer);
-
 			//printf("\nBest Shift: %d\n", max_index);
-			
 			fprintf(fp, "%d\n", max_index);
 
 			for(int x = 1; x < 26; x++){
 				shifts[x] = 0;
 			}
+
 		}
 
 		clock_t end = clock();
 		time_spent+=(double)(end-begin) / CLOCKS_PER_SEC;
 
 		printf("Time elapsed is %f seconds\n", time_spent);
-
-
+			
 		fclose(fp);
 		return 0;
 	}
