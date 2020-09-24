@@ -25,17 +25,17 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		for(int x = 0; x < DICTLINES; x++){
 			fscanf(fp, "%s", dictWords[x]);
 		}
+		fclose(fp);
 	}
 
 	//Sorts dictionary alphabetically using selection sort
 	//Compares word extracted by outer loop to all words below it
 	//If word above is alphabetically greater than word below, then swap the words
 	int sort(){
-		FILE *fp;
-		fp = fopen("../dictionary2.txt", "r");
 		int i, j;
 		char temp[MAX_WORD_LENGTH];
-		openDict();
+		
+		openDict();	
 			
 		for(i = 0; i < DICTLINES - 1; i++){
 			for(j = i + 1; j < DICTLINES; j++){
@@ -47,11 +47,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 			}
 		}
 		
-		/*for(int h=0; h<DICTLINES;h++){
-			printf("%s\n", dictWords[h]);
-		}*/
-
-		fclose(fp);
 		return 0;
 	}
 
