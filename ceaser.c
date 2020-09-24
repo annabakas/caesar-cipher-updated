@@ -68,21 +68,17 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	int findInDict(char *decrypted, int key){
 		//printf("%d %s\n", key, decrypted);
 		
-		int i, max, result, found;
+		int i;
 		
 		for(i=0; i < DICTLINES; i++){
 			//printf("%s\n", dictWords[i]);
-			max = shifts[0];
 			//result = strcmp(dictWords[i], decrypted);
 			if(stringCompare(dictWords[i], decrypted) == 0){
 				shifts[key]++;
 				//printf("%d\n", shifts[key]);
-			
-				if(shifts[key] > 5){
-					max_index = key;
-				}
 			}
-		}	
+		}
+		
 		return 0;
 	}
 
@@ -124,7 +120,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		
 		for(int key = 1; key < 26; key++){
 			decrypted = shift(word, key);	
-			printf("Shift Key: %d %s\n",key, decrypted);
+			//printf("Shift Key: %d %s\n",key, decrypted);
 			findInDict(decrypted, key);
 		}
 		
@@ -170,6 +166,21 @@ char encryptedSentence[MAX_WORD_LENGTH];
 			shifts[x] = 0;
 		}
 	}
+
+	//Find best shift
+	int bestShift(){
+		int n = sizeof(shifts)/sizeof(shifts[0]);
+		int max = shifts[0];
+		for(int i = 1; i < n; i++){
+			if(shifts[i] > max){
+				max = shifts[i];
+				max_index = i;
+			}
+		}
+
+		return max_index;
+	}
+
 	
 	//sort() opens and sorts dictionary2.txt
 	//Reads encrypted_text from stdin
@@ -181,19 +192,22 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		fp = fopen("shifts.txt", "w");
 
 		char buffer[MAX_WORD_LENGTH];
-		int count = 0;
+		int count = 0, max = shifts[0];
 
 		sort();
-			
+		int n;	
 		while((fgets(buffer, MAX_WORD_LENGTH, stdin)) != NULL){
 			count++;
 			printf("%d\n", count);
 			split(buffer);
-			printf("\nBest Shift: %d\n", max_index);
+			
+			//printf("\nBest Shift: %d\n", bestShift());
 			fprintf(fp, "%d\n", max_index);
-
+			
 			clearShifts();
-			break;
+			if(count == 50){
+				break;
+			}
 
 		}	
 		fclose(fp);
