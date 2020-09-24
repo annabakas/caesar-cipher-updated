@@ -181,7 +181,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	//Passes each sentence to split() to split into words
 	//Writes best shifts to shifts.txt
 	//Resets shift counts after each sentence
-	//Prints time elapsed
 	int main(){
 		FILE *fp;
 		fp = fopen("shifts.txt", "w");
@@ -189,9 +188,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		char buffer[MAX_WORD_LENGTH];
 		int count = 0;
 
-		double time_spent = 0.0;
-		clock_t begin = clock();
-		
 		sort();
 			
 		while((fgets(buffer, MAX_WORD_LENGTH, stdin)) != NULL){
@@ -204,13 +200,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 			clearShifts();
 			break;
 
-		}
-
-		clock_t end = clock();
-		time_spent+=(double)(end-begin) / CLOCKS_PER_SEC;
-
-		printf("Time elapsed is %f seconds\n", time_spent);
-			
+		}	
 		fclose(fp);
 		return 0;
 	}
