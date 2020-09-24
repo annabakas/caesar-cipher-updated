@@ -202,7 +202,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 			split(buffer);
 			
 			//printf("\nBest Shift: %d\n", bestShift());
-			fprintf(fp, "%d\n", max_index);
+			fprintf(fp, "%d\n", bestShift());
 			
 			clearShifts();
 			if(count == 50){
