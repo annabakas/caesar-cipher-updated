@@ -1,1 +1,0 @@
-/usr/bin/cc   -rdynamic CMakeFiles/ceaser.dir/ceaser.c.o  -o bin/ceaser  /usr/local/lib/libgtest.a -lpthread -lm 
