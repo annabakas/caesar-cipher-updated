@@ -5,6 +5,12 @@
 #define SHIFTS 25
 
 char shifts[SHIFTS];
+
+//sort() opens and sorts dictionary2.txt
+//Reads encrypted_text from stdin
+//Passes each sentence to split() to split into words
+//Writes best shifts to shifts.txt
+//Resets shift counts after each sentence
 int main(){
 	FILE *fp;
 	fp = fopen("shifts.txt", "w");
