@@ -24,4 +24,7 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 add_executable(ceaser ceaser.c)
+target_link_libraries(ceaser ${GTEST_LIBRARIES} -lpthread -lm)
 
+add_executable(ceaser_tests ceaser_tests.cc ceaser.c)
+target_link_libraries(ceaser_tests ${GTEST_LIBRARIES} -lpthread -lm)
