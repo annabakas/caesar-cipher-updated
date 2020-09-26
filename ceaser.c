@@ -188,7 +188,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	//Passes each sentence to split() to split into words
 	//Writes best shifts to shifts.txt
 	//Resets shift counts after each sentence
-	int main(){
+	/*int main(){
 		FILE *fp;
 		fp = fopen("shifts.txt", "w");
 
@@ -213,5 +213,5 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		}	
 		fclose(fp);
 		return 0;
-	}
+	}*/
 
