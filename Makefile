@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/annabakas/caesar-cipher-part-2-annabakas
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -124,17 +124,17 @@ ceaser_tests/fast:
 .PHONY : ceaser_tests/fast
 
 #=============================================================================
-# Target rules for targets named ceaser
+# Target rules for targets named ceaser_app
 
 # Build rule for target.
-ceaser: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ceaser
-.PHONY : ceaser
+ceaser_app: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ceaser_app
+.PHONY : ceaser_app
 
 # fast build rule for target.
-ceaser/fast:
-	$(MAKE) -f CMakeFiles/ceaser.dir/build.make CMakeFiles/ceaser.dir/build
-.PHONY : ceaser/fast
+ceaser_app/fast:
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/build
+.PHONY : ceaser_app/fast
 
 ceaser.o: ceaser.c.o
 
@@ -143,7 +143,7 @@ ceaser.o: ceaser.c.o
 # target to build an object file
 ceaser.c.o:
 	$(MAKE) -f CMakeFiles/ceaser_tests.dir/build.make CMakeFiles/ceaser_tests.dir/ceaser.c.o
-	$(MAKE) -f CMakeFiles/ceaser.dir/build.make CMakeFiles/ceaser.dir/ceaser.c.o
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/ceaser.c.o
 .PHONY : ceaser.c.o
 
 ceaser.i: ceaser.c.i
@@ -153,7 +153,7 @@ ceaser.i: ceaser.c.i
 # target to preprocess a source file
 ceaser.c.i:
 	$(MAKE) -f CMakeFiles/ceaser_tests.dir/build.make CMakeFiles/ceaser_tests.dir/ceaser.c.i
-	$(MAKE) -f CMakeFiles/ceaser.dir/build.make CMakeFiles/ceaser.dir/ceaser.c.i
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/ceaser.c.i
 .PHONY : ceaser.c.i
 
 ceaser.s: ceaser.c.s
@@ -163,8 +163,35 @@ ceaser.s: ceaser.c.s
 # target to generate assembly for a file
 ceaser.c.s:
 	$(MAKE) -f CMakeFiles/ceaser_tests.dir/build.make CMakeFiles/ceaser_tests.dir/ceaser.c.s
-	$(MAKE) -f CMakeFiles/ceaser.dir/build.make CMakeFiles/ceaser.dir/ceaser.c.s
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/ceaser.c.s
 .PHONY : ceaser.c.s
+
+ceaser_app.o: ceaser_app.c.o
+
+.PHONY : ceaser_app.o
+
+# target to build an object file
+ceaser_app.c.o:
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/ceaser_app.c.o
+.PHONY : ceaser_app.c.o
+
+ceaser_app.i: ceaser_app.c.i
+
+.PHONY : ceaser_app.i
+
+# target to preprocess a source file
+ceaser_app.c.i:
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/ceaser_app.c.i
+.PHONY : ceaser_app.c.i
+
+ceaser_app.s: ceaser_app.c.s
+
+.PHONY : ceaser_app.s
+
+# target to generate assembly for a file
+ceaser_app.c.s:
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/ceaser_app.c.s
+.PHONY : ceaser_app.c.s
 
 ceaser_tests.o: ceaser_tests.cc.o
 
@@ -199,13 +226,16 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... ceaser_tests"
-	@echo "... ceaser"
+	@echo "... rebuild_cache"
+	@echo "... ceaser_app"
 	@echo "... ceaser.o"
 	@echo "... ceaser.i"
 	@echo "... ceaser.s"
+	@echo "... ceaser_app.o"
+	@echo "... ceaser_app.i"
+	@echo "... ceaser_app.s"
 	@echo "... ceaser_tests.o"
 	@echo "... ceaser_tests.i"
 	@echo "... ceaser_tests.s"

@@ -2,6 +2,9 @@
 
 #include "ceaser.h"
 #define MAX_WORD_LENGTH 330
+#define SHIFTS 25
+
+char shifts[SHIFTS];
 int main(){
 	FILE *fp;
 	fp = fopen("shifts.txt", "w");

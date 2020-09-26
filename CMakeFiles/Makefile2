@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/annabakas/caesar-cipher-part-2-annabakas
 
 # The main recursive "all" target.
 all: CMakeFiles/ceaser_tests.dir/all
-all: CMakeFiles/ceaser.dir/all
+all: CMakeFiles/ceaser_app.dir/all
 
 .PHONY : all
 
@@ -65,7 +65,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/ceaser_tests.dir/clean
-clean: CMakeFiles/ceaser.dir/clean
+clean: CMakeFiles/ceaser_app.dir/clean
 
 .PHONY : clean
 
@@ -76,7 +76,7 @@ clean: CMakeFiles/ceaser.dir/clean
 CMakeFiles/ceaser_tests.dir/all:
 	$(MAKE) -f CMakeFiles/ceaser_tests.dir/build.make CMakeFiles/ceaser_tests.dir/depend
 	$(MAKE) -f CMakeFiles/ceaser_tests.dir/build.make CMakeFiles/ceaser_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/annabakas/caesar-cipher-part-2-annabakas/CMakeFiles --progress-num=3,4,5 "Built target ceaser_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/annabakas/caesar-cipher-part-2-annabakas/CMakeFiles --progress-num=4,5,6 "Built target ceaser_tests"
 .PHONY : CMakeFiles/ceaser_tests.dir/all
 
 # Build rule for subdir invocation for target.
@@ -97,31 +97,31 @@ CMakeFiles/ceaser_tests.dir/clean:
 .PHONY : CMakeFiles/ceaser_tests.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/ceaser.dir
+# Target rules for target CMakeFiles/ceaser_app.dir
 
 # All Build rule for target.
-CMakeFiles/ceaser.dir/all:
-	$(MAKE) -f CMakeFiles/ceaser.dir/build.make CMakeFiles/ceaser.dir/depend
-	$(MAKE) -f CMakeFiles/ceaser.dir/build.make CMakeFiles/ceaser.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/annabakas/caesar-cipher-part-2-annabakas/CMakeFiles --progress-num=1,2 "Built target ceaser"
-.PHONY : CMakeFiles/ceaser.dir/all
+CMakeFiles/ceaser_app.dir/all:
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/depend
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/annabakas/caesar-cipher-part-2-annabakas/CMakeFiles --progress-num=1,2,3 "Built target ceaser_app"
+.PHONY : CMakeFiles/ceaser_app.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/ceaser.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/annabakas/caesar-cipher-part-2-annabakas/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ceaser.dir/all
+CMakeFiles/ceaser_app.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/annabakas/caesar-cipher-part-2-annabakas/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ceaser_app.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/annabakas/caesar-cipher-part-2-annabakas/CMakeFiles 0
-.PHONY : CMakeFiles/ceaser.dir/rule
+.PHONY : CMakeFiles/ceaser_app.dir/rule
 
 # Convenience name for target.
-ceaser: CMakeFiles/ceaser.dir/rule
+ceaser_app: CMakeFiles/ceaser_app.dir/rule
 
-.PHONY : ceaser
+.PHONY : ceaser_app
 
 # clean rule for target.
-CMakeFiles/ceaser.dir/clean:
-	$(MAKE) -f CMakeFiles/ceaser.dir/build.make CMakeFiles/ceaser.dir/clean
-.PHONY : CMakeFiles/ceaser.dir/clean
+CMakeFiles/ceaser_app.dir/clean:
+	$(MAKE) -f CMakeFiles/ceaser_app.dir/build.make CMakeFiles/ceaser_app.dir/clean
+.PHONY : CMakeFiles/ceaser_app.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

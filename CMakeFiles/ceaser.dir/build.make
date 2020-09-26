@@ -79,6 +79,7 @@ ceaser_EXTERNAL_OBJECTS =
 
 bin/ceaser: CMakeFiles/ceaser.dir/ceaser.c.o
 bin/ceaser: CMakeFiles/ceaser.dir/build.make
+bin/ceaser: /usr/local/lib/libgtest.a
 bin/ceaser: CMakeFiles/ceaser.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/annabakas/caesar-cipher-part-2-annabakas/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable bin/ceaser"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ceaser.dir/link.txt --verbose=$(VERBOSE)
