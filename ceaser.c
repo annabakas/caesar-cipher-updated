@@ -120,7 +120,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		
 		for(int key = 1; key < 26; key++){
 			decrypted = shift(word, key);	
-			printf("Shift Key: %d %s\n",key, decrypted);
+			//printf("Shift Key: %d %s\n",key, decrypted);
 			findInDict(decrypted, key);
 		}
 		
@@ -172,7 +172,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		int n = sizeof(shifts)/sizeof(shifts[0]);
 		int max = shifts[0];
 		for(int i = 1; i < 26; i++){
-			printf("Shift: %d Total: %d\n", i, shifts[i]);
+			//printf("Shift: %d Total: %d\n", i, shifts[i]);
 			if(shifts[i] > max){
 				max = shifts[i];
 				max_index = i;

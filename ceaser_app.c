@@ -25,14 +25,10 @@ int main(){
 		printf("%d\n", count);
 		split(buffer);
 
-		printf("\nBest Shift: %d\n", bestShift());
+		//printf("\nBest Shift: %d\n", bestShift());
 		fprintf(fp, "%d\n", bestShift());
 
 		clearShifts();
-		if(count == 50){
-			break;
-		}
-
 	}
 	
 	fclose(fp);
