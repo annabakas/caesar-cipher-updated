@@ -49,6 +49,10 @@ TEST(ShiftWordTest, LongWords){
 	ASSERT_STREQ(string1, shift(shiftSixteen, 16));
 }
 
+//Testing that clearShifts was called successfully
+TEST(ResetShifts, Reset){
+	ASSERT_EQ(0, clearShifts());
+}
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
