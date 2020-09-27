@@ -49,12 +49,6 @@ TEST(ShiftWordTest, LongWords){
 	ASSERT_STREQ(string1, shift(shiftSixteen, 16));
 }
 
-//Testing that shifts[] values are reset to zero
-TEST(ClearShiftsTest, Reset){
-	int z = 0;
-	ASSERT_EQ(z, clearShifts());
-}	
-
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
