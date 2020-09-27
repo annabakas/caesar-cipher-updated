@@ -128,8 +128,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		return 0;
 	}
 
-	
-
 	//Takes in sentence from encrypted_text
 	//Splits sentence into words at spaces
 	//Pass word to decrypt()
@@ -161,9 +159,10 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	}	
 	
 	//Reset shift count
-	void clearShifts(){
+	int clearShifts(){
 		for(int x = 1; x < 26; x++){
 			shifts[x] = 0;
+			return shifts[x];
 		}
 	}
 
