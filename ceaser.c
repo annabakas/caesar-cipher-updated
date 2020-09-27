@@ -66,8 +66,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	//If decrypted word is found in dictionary, increment shift key
 	//If shift key count is greater than 5, set that as max
 	int findInDict(char *decrypted, int key){
-		//printf("%d %s\n", key, decrypted);
-		
+		//printf("%d %s\n", key, decrypted);	
 		int i;
 		
 		for(i=0; i < DICTLINES; i++){
@@ -78,7 +77,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 				//printf("Found: %d\n", shifts[key]);
 			}
 		}
-		
+
 		return 0;
 	}
 
@@ -159,10 +158,9 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	}	
 	
 	//Reset shift count
-	int clearShifts(){
+	void clearShifts(){
 		for(int x = 1; x < 26; x++){
 			shifts[x] = 0;
-			return shifts[x];
 		}
 	}
 
