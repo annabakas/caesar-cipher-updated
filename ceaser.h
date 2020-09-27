@@ -14,7 +14,7 @@ extern char* decrypt(char *word);
 
 extern int split(char *l);
 
-extern int clearShifts();
+extern char clearShifts();
 
 extern int bestShift();
 

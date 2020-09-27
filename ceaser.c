@@ -158,12 +158,14 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	}	
 	
 	//Reset shift count
-	int clearShifts(){
+	char clearShifts(){
+		int sum;
 		for(int x = 1; x < 26; x++){
 			shifts[x] = 0;
 		}
-
-		return 0;
+		for(int g = 1; g < 26; g++){
+			return shifts[g];
+		}
 	}
 
 	//Find best shift
