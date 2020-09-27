@@ -131,7 +131,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	//Takes in sentence from encrypted_text
 	//Splits sentence into words at spaces
 	//Pass word to decrypt()
-	int split(char *l){
+	char* split(char *l){
 		char word[TOTAL_WORDS][20];
 		char ch;
 		int i, j, ctr;
