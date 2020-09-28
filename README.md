@@ -1,6 +1,6 @@
 1. In main() encryptedtext.txt is read line by line using fgets() until EOF. Each line is stored in a buffer that is passed to split() to split the sentence into words. sort() is called to sort the dictionary words. After each sentence, the best shift is written to shifts.txt. Then, clearShifts() is called to reset the shift occurences in preparation for the next sentence.
 
-2. In sort(), openDict() is called. sort() sorts dictionary2.txt alphabetically using selection sort. It loops through all the words in dictionary2.txt and compares the first word from the outer loop to the next word in the inner loop. If the outer loop word is alphabetically greater than the inner loop word, then the words are swapped. The words are stored in a 2D array called dictWords[][].
+2. In sort(), openDict() is called. sort() sorts dictionary2.txt alphabetically using selection sort. It loops through all the words in dictionary2.txt and compares the first word from the outer loop to the next word in the inner loop. If the outer loop word is alphabetically greater than the inner loop word, then the words are swapped. The words are stored in a 2D array called dictWords[][]. I chose selection sort to sort the dictionary words because it will be quicker to determine if a decrypted word is in the dictionary. Identical words will be next to eachother, as they will be sorted alphabetically, which means that that all of dictWords won't have to be traversed to find the occurences of the decrypted word.
 
 3. In openDict(), dictionary2.txt is opened and read into dictWords.
 
