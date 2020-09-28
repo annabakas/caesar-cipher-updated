@@ -1,6 +1,6 @@
 #ifndef _CEASER_H_
 
-extern void openDict();
+extern int openDict(char* filename);
 
 extern int sort();
 

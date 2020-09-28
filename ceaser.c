@@ -16,9 +16,10 @@ char encryptedSentence[MAX_WORD_LENGTH];
 
 	//Opens dictionary2.txt and storing in dictWords
 	//Checks if dictionary2.txt was opened successfully
-	int openDict(){
+	int openDict(char* filename){
 		FILE *fp;
-		fp = fopen("../dictionary2.txt", "r");
+		fp = fopen(filename, "r");
+		
 		if(fp == NULL){
 			printf("Error opening the file\n");
 		}
@@ -26,6 +27,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 			fscanf(fp, "%s", dictWords[x]);
 		}
 		fclose(fp);
+		return 0;
 	}
 
 	//Sorts dictionary alphabetically using selection sort
@@ -35,7 +37,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		int i, j;
 		char temp[MAX_WORD_LENGTH];
 		
-		openDict();	
+		openDict("../dictionary2.txt");	
 			
 		for(i = 0; i < DICTLINES - 1; i++){
 			for(j = i + 1; j < DICTLINES; j++){
@@ -46,7 +48,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 				}
 			}
 		}
-		
 		return 0;
 	}
 
@@ -117,7 +118,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		
 		for(int key = 1; key < 26; key++){
 			decrypted = shift(word, key);	
-			//printf("Shift Key: %d %s\n",key, decrypted);
 			findInDict(decrypted, key);
 		}
 		
@@ -161,8 +161,8 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		for(int x = 1; x < 26; x++){
 			shifts[x] = 0;
 		}
-		for(int g = 1; g < 26; g++){
-			return shifts[g];
+		for(int h = 1; h < 26; h++){
+			return shifts[h];
 		}
 	}
 

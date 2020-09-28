@@ -65,6 +65,13 @@ TEST(ResetShiftsTest, Reset){
 	ASSERT_EQ(0, clearShifts());
 }
 
+//Testing that dictionary2.txt file exists
+TEST(DictionaryTest, DictionaryExists){
+	char filename[20] = "dictionary2.txt";
+	FILE *f = fopen(filename, "r");
+	ASSERT_TRUE(f!=NULL);
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
