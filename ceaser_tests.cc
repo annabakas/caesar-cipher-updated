@@ -61,9 +61,10 @@ TEST(ShiftWordTest, IncorectShifts){
 }
 
 //Testing that clearShifts was called successfully
-TEST(ResetShifts, Reset){
+TEST(ResetShiftsTest, Reset){
 	ASSERT_EQ(0, clearShifts());
 }
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

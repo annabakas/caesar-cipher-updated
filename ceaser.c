@@ -16,7 +16,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 
 	//Opens dictionary2.txt and storing in dictWords
 	//Checks if dictionary2.txt was opened successfully
-	void openDict(){
+	int openDict(){
 		FILE *fp;
 		fp = fopen("../dictionary2.txt", "r");
 		if(fp == NULL){
@@ -77,7 +77,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 				//printf("Found: %d\n", shifts[key]);
 			}
 		}
-
 		return 0;
 	}
 
@@ -103,7 +102,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 			decrypted[i] = ch;
 		}
 		return decrypted;
-		
 	}
 	
 
@@ -173,7 +171,6 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		int n = sizeof(shifts)/sizeof(shifts[0]);
 		int max = shifts[0];
 		for(int i = 1; i < 26; i++){
-			//printf("Shift: %d Total: %d\n", i, shifts[i]);
 			if(shifts[i] > max){
 				max = shifts[i];
 				max_index = i;
