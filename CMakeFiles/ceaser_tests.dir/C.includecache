@@ -6,13 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/home/annabakas/caesar-cipher-part-2-annabakas/ceaser.c
-stdio.h
--
-stdlib.h
--
-string.h
--
-time.h
--
-

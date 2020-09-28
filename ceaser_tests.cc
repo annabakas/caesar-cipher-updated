@@ -4,7 +4,7 @@
 
 #include "ceaser.hh"
 
-//Testing correct comparisons (matched words)
+//Testing correct comparisons has value of zero
 TEST(StringCompareTest, CorrectCompare){
 	char string1[12] = "Hello";
 	char string2[12] = "Hello";
@@ -17,7 +17,7 @@ TEST(StringCompareTest, CorrectCompare){
 	ASSERT_EQ(0, stringCompare(string5, string6));
 }
 
-//Testing incorrect comparisons (different words)
+//Testing incorrect comparisons has value of one
 TEST(StringCompareTest, IncorrectCompare){
 	char string1[12] = "SUMMER";
 	char string2[12] = "AUTUMN";
@@ -27,7 +27,7 @@ TEST(StringCompareTest, IncorrectCompare){
 	ASSERT_EQ(1, stringCompare(string1, string3));
 }
 
-//Testing shifting a word by a certain shift/key
+//Testing two strings have the same content
 TEST(ShiftWordTest, SingleWord){
 	char shiftTen[12]  = "YZOBKDSXQ";
 	char shiftThree[12] = "RSHUDWLQJ";
@@ -38,7 +38,7 @@ TEST(ShiftWordTest, SingleWord){
 	ASSERT_STREQ(string1, shift(shiftTwenty, 20));
 }
 
-//Testing shifting long words/sentences by a certain shift/key
+//Testing two longer strings have the same content
 TEST(ShiftWordTest, LongWords){
 	char string1[50] = "TODAYISSEPTEMBERTWENTYSEVENTHTWENTYTWENTY";
 	char shiftFive[50] = "YTIFDNXXJUYJRGJWYBJSYDXJAJSYMYBJSYDYBJSYD";
@@ -47,6 +47,17 @@ TEST(ShiftWordTest, LongWords){
 	ASSERT_STREQ(string1, shift(shiftFive, 5));
 	ASSERT_STREQ(string1, shift(shiftTwelve, 12));
 	ASSERT_STREQ(string1, shift(shiftSixteen, 16));
+}
+
+//Testing two strings after incorrect shifts have different contents
+TEST(ShiftWordTest, IncorectShifts){
+	char string1[12] = "RAINING";
+	char shiftSixteen[12] = "HQYDYDW";
+	char shiftSix[12] = "XGOTOTM";
+	char shiftTen[12] = "BKSXSXQ";
+	ASSERT_STRNE(string1, shift(shiftSixteen, 18));
+	ASSERT_STRNE(string1, shift(shiftSix, 9));
+	ASSERT_STRNE(string1, shift(shiftTen, 22));
 }
 
 //Testing that clearShifts was called successfully
