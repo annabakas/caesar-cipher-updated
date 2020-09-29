@@ -1,20 +1,19 @@
 /* test cases */
 
 #include <gtest/gtest.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "ceaser.hh"
 
 //Testing correct comparisons has value of zero
 TEST(StringCompareTest, CorrectCompare){
 	char string1[12] = "Hello";
-	char string2[12] = "Hello";
-	char string3[12] = "DONUTS";
-	char string4[12] = "DONUTS";
-	char string5[12] = "PAINTING";
-	char string6[12] = "PAINTING";
-	ASSERT_EQ(0, stringCompare(string1, string2));
-	ASSERT_EQ(0, stringCompare(string3, string4));
-	ASSERT_EQ(0, stringCompare(string5, string6));
+	char string2[12] = "DONUTS";
+	char string3[12] = "PAINTING";
+	ASSERT_EQ(0, stringCompare(string1, string1));
+	ASSERT_EQ(0, stringCompare(string2, string2));
+	ASSERT_EQ(0, stringCompare(string3, string3));
 }
 
 //Testing incorrect comparisons has value of one
@@ -60,9 +59,14 @@ TEST(ShiftWordTest, IncorectShifts){
 	ASSERT_STRNE(string1, shift(shiftTen, 22));
 }
 
-//Testing that clearShifts was called successfully
+//Testing that clearShifts successfully reset shifts
 TEST(ResetShiftsTest, Reset){
 	ASSERT_EQ(0, clearShifts());
+}
+
+//Testing that clearShifts unsuccessfully reset shifts
+TEST(ResetShiftsTetst, BadReset){
+	ASSERT_NE(1, clearShifts());
 }
 
 //Testing that dictionary2.txt file exists
@@ -71,6 +75,19 @@ TEST(DictionaryTest, DictionaryExists){
 	FILE *f = fopen(filename, "r");
 	ASSERT_TRUE(f!=NULL);
 }
+
+//Testing the shift[] is incremented successfully
+TEST(ShiftIncrementTest, IncrementCalled){
+	int k = 12;
+	ASSERT_EQ(0, increment(k));
+}
+
+//Testing that split() is called successfully
+TEST(SplitTest, SplitCalled){
+	char string[12] = "my name";
+	ASSERT_EQ(0, split(string));
+}
+
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

@@ -13,16 +13,17 @@ int max_index;
 
 char dictWords[DICTLINES][100];
 char encryptedSentence[MAX_WORD_LENGTH];
-
+	
 	//Opens dictionary2.txt and storing in dictWords
 	//Checks if dictionary2.txt was opened successfully
-	int openDict(char* filename){
+	int openDict(){
 		FILE *fp;
-		fp = fopen(filename, "r");
+		fp = fopen("../dictionary2.txt", "r");
 		
 		if(fp == NULL){
 			printf("Error opening the file\n");
 		}
+		
 		for(int x = 0; x < DICTLINES; x++){
 			fscanf(fp, "%s", dictWords[x]);
 		}
@@ -37,7 +38,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		int i, j;
 		char temp[MAX_WORD_LENGTH];
 		
-		openDict("../dictionary2.txt");	
+		openDict();	
 			
 		for(i = 0; i < DICTLINES - 1; i++){
 			for(j = i + 1; j < DICTLINES; j++){
@@ -63,6 +64,11 @@ char encryptedSentence[MAX_WORD_LENGTH];
 			return 1;
 		}
 	}
+
+	int increment(int key){
+		shifts[key]++;
+		return 0;
+	}
 	//Checks decrypted word against dictionary words
 	//If decrypted word is found in dictionary, increment shift key
 	//If shift key count is greater than 5, set that as max
@@ -74,7 +80,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 			//printf("%s\n", dictWords[i]);
 			//result = strcmp(dictWords[i], decrypted);
 			if(stringCompare(dictWords[i], decrypted) == 0){
-				shifts[key]++;
+				increment(key);
 				//printf("Found: %d\n", shifts[key]);
 			}
 		}
@@ -128,7 +134,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	//Takes in sentence from encrypted_text
 	//Splits sentence into words at spaces
 	//Pass word to decrypt()
-	char* split(char *l){
+	int split(char *l){
 		char word[TOTAL_WORDS][20];
 		char ch;
 		int i, j, ctr;
@@ -146,7 +152,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 			}
 		}
 
-
+		
 		for(i = 0; i < ctr; i++){
 			decrypt(word[i]);
 			//printf("%s\n", word[i]);

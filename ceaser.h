@@ -1,10 +1,12 @@
 #ifndef _CEASER_H_
 
-extern int openDict(char* filename);
+extern int openDict();
 
 extern int sort();
 
 extern int stringCompare(char *dict, char *decrypted);
+
+extern int increment(int key);
 
 extern int findInDict(char *decrypted, int key);
 
