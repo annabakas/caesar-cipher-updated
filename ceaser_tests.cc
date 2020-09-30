@@ -3,10 +3,11 @@
 #include <gtest/gtest.h>
 
 #include "ceaser.hh"
+#include <stdio.h>
 
 //Testing correct comparisons has value of zero
 TEST(StringCompareTest, CorrectCompare){
-	char string1[12] = "Hello";
+	char string1[12] = "HELLO";
 	char string2[12] = "DONUTS";
 	char string3[12] = "PAINTING";
 	ASSERT_EQ(0, stringCompare(string1, string1));
@@ -19,6 +20,16 @@ TEST(StringCompareTest, IncorrectCompare){
 	char string1[12] = "SUMMER";
 	char string2[12] = "AUTUMN";
 	char string3[12] = "WINTER";
+	ASSERT_EQ(1, stringCompare(string1, string2));
+	ASSERT_EQ(1, stringCompare(string2, string3));
+	ASSERT_EQ(1, stringCompare(string1, string3));
+}
+
+//Testing that comparisons of mix of upper/lower case words has value of one
+TEST(StringCompareTest, UpperLowerCase){
+	char string1[12] = "CoMPaRe";
+	char string2[12] = "COMPARE";
+	char string3[12] = "compare";
 	ASSERT_EQ(1, stringCompare(string1, string2));
 	ASSERT_EQ(1, stringCompare(string2, string3));
 	ASSERT_EQ(1, stringCompare(string1, string3));
@@ -58,7 +69,7 @@ TEST(ShiftWordTest, IncorectShifts){
 }
 
 //Testing that clearShifts successfully reset shifts
-TEST(ResetShiftsTest, Reset){
+TEST(ResetShiftsTest, GoodReset){
 	ASSERT_EQ(0, clearShifts());
 }
 
@@ -72,6 +83,7 @@ TEST(DictionaryTest, DictionaryExists){
 	char filename[20] = "dictionary2.txt";
 	FILE *f = fopen(filename, "r");
 	ASSERT_TRUE(f!=NULL);
+	fclose(f);
 }
 
 //Testing the shift[] is incremented successfully
@@ -92,8 +104,10 @@ TEST(BestShiftTest, ReturnZero){
 	ASSERT_EQ(0, bestShift());
 }
 
-TEST(OpenDictTest, ReturnZero){
-	ASSERT_EQ(NULL, openDict());
+//Testing bestShift() not equal to one after clearShifts()
+TEST(BestShiftTest, ReturnOne){
+	clearShifts();
+	ASSERT_NE(1, bestShift());
 }
 
 int main(int argc, char **argv) {

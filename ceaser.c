@@ -19,14 +19,14 @@ void readDict(FILE *fp){
 	for(int x = 0; x < DICTLINES; x++){
 		fscanf(fp, "%s", dictWords[x]);
 	}
-}	
+}
 
 //Opens dictionary2.txt and storing in dictWords
 //Checks if dictionary2.txt was opened successfully
 int openDict(){
 	FILE *fp;
 	fp = fopen("../dictionary2.txt", "r");
-	
+
 	if(fp == NULL){
 		printf("Error opening the file\n");
 	}
@@ -41,9 +41,9 @@ int openDict(){
 int sort(){
 	int i, j;
 	char temp[MAX_WORD_LENGTH];
-	
-	openDict();	
-		
+
+	openDict();
+
 	for(i = 0; i < DICTLINES - 1; i++){
 		for(j = i + 1; j < DICTLINES; j++){
 			if(strcmp(dictWords[i], dictWords[j]) > 0){
@@ -78,9 +78,8 @@ int increment(int key){
 //If decrypted word is found in dictionary, increment shift key
 //If shift key count is greater than 5, set that as max
 int findInDict(char *decrypted, int key){
-	//printf("%d %s\n", key, decrypted);	
+	//printf("%d %s\n", key, decrypted);
 	int i;
-	
 	for(i=0; i < DICTLINES; i++){
 		//printf("%s\n", dictWords[i]);
 		//result = strcmp(dictWords[i], decrypted);
@@ -113,7 +112,7 @@ char* shift(char* word, int key){
 		decrypted[i] = ch;
 	}
 	return decrypted;
-}	
+}
 
 //Decrypts each word from sentences
 //Tries all twenty-six shifts
@@ -124,11 +123,11 @@ char* decrypt(char *word){
 	char ch;
 	char *decrypted;
 	decrypted = malloc(MAX_WORD_LENGTH * sizeof *decrypted);
-	
+
 	for(int key = 1; key < 26; key++){
-		decrypted = shift(word, key);	
+		decrypted = shift(word, key);
 		findInDict(decrypted, key);
-	}	
+	}
 	free(decrypted);
 	return 0;
 }
@@ -138,7 +137,7 @@ char* decrypt(char *word){
 //Pass word to decrypt()
 int split(char *l){
 	char word[TOTAL_WORDS][20];
-	char ch;
+	//char ch;
 	int i, j, ctr;
 	j=0; ctr = 0;
 	for(i = 0; i <= (strlen(l)); i++){
@@ -152,16 +151,14 @@ int split(char *l){
 			j++;
 		}
 	}
-
-		
 	for(i = 0; i < ctr; i++){
 		decrypt(word[i]);
 		//printf("%s\n", word[i]);
 	}
 	return 0;
-}	
-	
-	//Reset shift count
+}
+
+//Reset shift count
 char clearShifts(){
 	int sum;
 	for(int x = 1; x < 26; x++){
