@@ -1,5 +1,7 @@
 #ifndef _CEASER_H_
 
+extern void readDict();
+
 extern int openDict();
 
 extern int sort();

@@ -92,6 +92,10 @@ TEST(BestShiftTest, ReturnZero){
 	ASSERT_EQ(0, bestShift());
 }
 
+TEST(OpenDictTest, ReturnZero){
+	ASSERT_EQ(NULL, openDict());
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

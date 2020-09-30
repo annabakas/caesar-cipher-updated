@@ -13,7 +13,14 @@ int max_index;
 
 char dictWords[DICTLINES][100];
 char encryptedSentence[MAX_WORD_LENGTH];
-	
+
+	//Reads dictionary words into dictWords
+	void readDict(FILE *fp){
+		for(int x = 0; x < DICTLINES; x++){
+			fscanf(fp, "%s", dictWords[x]);
+		}
+	}	
+
 	//Opens dictionary2.txt and storing in dictWords
 	//Checks if dictionary2.txt was opened successfully
 	int openDict(){
@@ -23,10 +30,7 @@ char encryptedSentence[MAX_WORD_LENGTH];
 		if(fp == NULL){
 			printf("Error opening the file\n");
 		}
-		
-		for(int x = 0; x < DICTLINES; x++){
-			fscanf(fp, "%s", dictWords[x]);
-		}
+		readDict(fp);
 		fclose(fp);
 		return 0;
 	}
