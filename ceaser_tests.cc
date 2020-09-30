@@ -1,9 +1,7 @@
 /* test cases */
 
 #include <gtest/gtest.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 #include "ceaser.hh"
 
 //Testing correct comparisons has value of zero
@@ -88,6 +86,11 @@ TEST(SplitTest, SplitCalled){
 	ASSERT_EQ(0, split(string));
 }
 
+//Testing bestShift() equal to zero after clearShifts()
+TEST(BestShiftTest, ReturnZero){
+	clearShifts();
+	ASSERT_EQ(0, bestShift());
+}
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

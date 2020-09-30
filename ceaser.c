@@ -66,8 +66,8 @@ char encryptedSentence[MAX_WORD_LENGTH];
 	}
 
 	int increment(int key){
-		shifts[key]++;
-		return 0;
+		int i = shifts[key]++;
+		return i;
 	}
 	//Checks decrypted word against dictionary words
 	//If decrypted word is found in dictionary, increment shift key
