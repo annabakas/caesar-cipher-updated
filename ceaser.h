@@ -14,7 +14,7 @@ extern int findInDict(char *decrypted, int key);
 
 extern char* shift(char *word, int key);
 
-extern char* decrypt(char *word);
+extern int decrypt(char *word);
 
 extern int split(char *l);
 

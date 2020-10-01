@@ -108,7 +108,7 @@ TEST(BestShiftTest, ReturnZero){
 TEST(BestShiftTest, ReturnOne){
 	clearShifts();
 	ASSERT_NE(1, bestShift());
-}
+}		
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

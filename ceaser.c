@@ -118,7 +118,7 @@ char* shift(char* word, int key){
 //Tries all twenty-six shifts
 //Passes word and key to shift() to do the shifts
 //Passes decrypted word and key/shift to compare() to check if it's an English word
-char* decrypt(char *word){
+int decrypt(char *word){
 	//printf("\n%s\n", word);
 	char ch;
 	char *decrypted;
