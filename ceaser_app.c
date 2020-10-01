@@ -14,6 +14,7 @@ char shifts[SHIFTS];
 int main(){
 	FILE *fp;
 	fp = fopen("shifts.txt", "w");
+	openShifts(fp);
 	char buffer[MAX_WORD_LENGTH];
 	int count = 0, max = shifts[0];
 

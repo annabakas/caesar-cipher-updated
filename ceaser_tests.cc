@@ -108,7 +108,15 @@ TEST(BestShiftTest, ReturnZero){
 TEST(BestShiftTest, ReturnOne){
 	clearShifts();
 	ASSERT_NE(1, bestShift());
-}		
+}
+
+//Testing that shifts.txt opened successfully
+TEST(OpenShiftsTest, FileOpened){
+	FILE *fp;
+	fp = fopen("shifts.txt", "r");
+	ASSERT_EQ(0, openShifts(fp));
+	fclose(fp);
+}
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

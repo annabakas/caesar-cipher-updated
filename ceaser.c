@@ -181,3 +181,14 @@ int bestShift(){
 	}
 	return max_index;
 }
+
+//Checks that shifts.txt was opened successfully
+int openShifts(FILE *fp){
+	int result = 0;
+	if(fp == NULL){
+		printf("Error opening the file\n");
+		result = 1;
+	}
+	return result;
+}
+

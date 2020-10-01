@@ -22,4 +22,6 @@ extern char clearShifts();
 
 extern int bestShift();
 
+extern int openShifts(FILE *fp);
+
 #endif
