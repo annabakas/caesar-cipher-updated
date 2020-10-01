@@ -27,9 +27,7 @@ int openDict(){
 	FILE *fp;
 	fp = fopen("../dictionary2.txt", "r");
 
-	if(fp == NULL){
-		printf("Error opening the file\n");
-	}
+	checkOpen(fp);
 	readDict(fp);
 	fclose(fp);
 	return 0;
@@ -182,8 +180,8 @@ int bestShift(){
 	return max_index;
 }
 
-//Checks that shifts.txt was opened successfully
-int openShifts(FILE *fp){
+//Checks that file was opened successfully
+int checkOpen(FILE *fp){
 	int result = 0;
 	if(fp == NULL){
 		printf("Error opening the file\n");

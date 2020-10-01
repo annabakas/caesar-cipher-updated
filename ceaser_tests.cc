@@ -110,11 +110,11 @@ TEST(BestShiftTest, ReturnOne){
 	ASSERT_NE(1, bestShift());
 }
 
-//Testing that shifts.txt opened successfully
+//Testing that files are opened successfully
 TEST(OpenShiftsTest, FileOpened){
 	FILE *fp;
 	fp = fopen("shifts.txt", "r");
-	ASSERT_EQ(0, openShifts(fp));
+	ASSERT_EQ(0, checkOpen(fp));
 	fclose(fp);
 }
 
