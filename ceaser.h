@@ -1,5 +1,7 @@
 #ifndef _CEASER_H_
 
+extern int checkOpen(FILE *fp);
+
 extern void readDict();
 
 extern int openDict();
@@ -21,7 +23,5 @@ extern int split(char *l);
 extern char clearShifts();
 
 extern int bestShift();
-
-extern int checkOpen(FILE *fp);
 
 #endif

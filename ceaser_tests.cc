@@ -5,7 +5,7 @@
 #include "ceaser.hh"
 #include <stdio.h>
 
-//Testing correct comparisons has value of zero
+//Testing correct comparisons have value of zero
 TEST(StringCompareTest, CorrectCompare){
 	char string1[12] = "HELLO";
 	char string2[12] = "DONUTS";
@@ -15,7 +15,7 @@ TEST(StringCompareTest, CorrectCompare){
 	ASSERT_EQ(0, stringCompare(string3, string3));
 }
 
-//Testing incorrect comparisons has value of one
+//Testing incorrect comparisons have value of one
 TEST(StringCompareTest, IncorrectCompare){
 	char string1[12] = "SUMMER";
 	char string2[12] = "AUTUMN";
@@ -25,7 +25,7 @@ TEST(StringCompareTest, IncorrectCompare){
 	ASSERT_EQ(1, stringCompare(string1, string3));
 }
 
-//Testing that comparisons of mix of upper/lower case words has value of one
+//Testing that comparisons of mix of upper/lower case words have value of one
 TEST(StringCompareTest, UpperLowerCase){
 	char string1[12] = "CoMPaRe";
 	char string2[12] = "COMPARE";
@@ -111,11 +111,18 @@ TEST(BestShiftTest, ReturnOne){
 }
 
 //Testing that files are opened successfully
-TEST(OpenShiftsTest, FileOpened){
+TEST(FilesOpenedTest, FileOpened){
 	FILE *fp;
 	fp = fopen("shifts.txt", "r");
 	ASSERT_EQ(0, checkOpen(fp));
 	fclose(fp);
+}
+
+//Testing that nonexistent file returns value of one
+TEST(FilesOpenedTest, FileNotOpened){
+	FILE *fp;
+	fp = fopen("fakefile.txt", "r");
+	ASSERT_EQ(1, checkOpen(fp));
 }
 
 int main(int argc, char **argv) {

@@ -14,6 +14,16 @@ int max_index;
 char dictWords[DICTLINES][100];
 char encryptedSentence[MAX_WORD_LENGTH];
 
+//Checks that file was opened successfully
+int checkOpen(FILE *fp){
+	int result = 0;
+	if(fp == NULL){
+		printf("Error opening file\n");
+		result = 1;
+	}
+	return result;
+}
+
 //Reads dictionary words into dictWords
 void readDict(FILE *fp){
 	for(int x = 0; x < DICTLINES; x++){
@@ -179,14 +189,3 @@ int bestShift(){
 	}
 	return max_index;
 }
-
-//Checks that file was opened successfully
-int checkOpen(FILE *fp){
-	int result = 0;
-	if(fp == NULL){
-		printf("Error opening the file\n");
-		result = 1;
-	}
-	return result;
-}
-
