@@ -4,8 +4,6 @@
 
 #include "ceaser.hh"
 #include <stdio.h>
-using namespace std;
-#include <string>
 
 //Testing correct comparisons have value of zero
 TEST(StringCompareTest, CorrectCompare){
@@ -129,19 +127,6 @@ TEST(FilesOpenedTest, FileNotOpened){
 
 //Testing that dictionary is sorted alphabetically
 TEST(SortedDictTest, SortedCorrectly){
-	/*string fname = "dictionary2.txt";
-	char* fp = new char[fname.size() + 1];
-	std::copy(fname.begin(), fname.end(), fp);
-	openDict(fp);
-	bool sorted = true;
-
-	for(int i = 0; i < 8731; i++){
-		string word1(dictWords[i]);
-		string word2(dictWords[i+1]);
-		if(word1.compare(word2) > 0){
-			sorted = false;
-		}
-	}*/
 	char filename[20] = "./dictionary2.txt";
 	openDict(filename);
 	bool sorted = true;
