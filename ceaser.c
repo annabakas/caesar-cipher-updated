@@ -31,26 +31,12 @@ void readDict(FILE *fp){
 	}
 }
 
-//Opens dictionary2.txt and storing in dictWords
-//Checks if dictionary2.txt was opened successfully
-int openDict(){
-	FILE *fp;
-	fp = fopen("../dictionary2.txt", "r");
-
-	checkOpen(fp);
-	readDict(fp);
-	fclose(fp);
-	return 0;
-}
-
 //Sorts dictionary alphabetically using selection sort
 //Compares word extracted by outer loop to all words below it
 //If word above is alphabetically greater than word below, then swap the words
 int sort(){
 	int i, j;
 	char temp[MAX_WORD_LENGTH];
-
-	openDict();
 
 	for(i = 0; i < DICTLINES - 1; i++){
 		for(j = i + 1; j < DICTLINES; j++){
@@ -61,6 +47,19 @@ int sort(){
 			}
 		}
 	}
+	return 0;
+}
+
+//Opens dictionary2.txt and checks that it was opened successfully
+//Call readDict() to read dictionary2.txt into dictWords
+//Call sort() to sort dictionary words
+int openDict(char* filename){
+	FILE *fp;
+	fp = fopen(filename, "r");
+	checkOpen(fp);
+	readDict(fp);
+	sort();
+	fclose(fp);
 	return 0;
 }
 

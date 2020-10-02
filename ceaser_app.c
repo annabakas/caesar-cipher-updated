@@ -18,8 +18,9 @@ int main(){
 
 	char buffer[MAX_WORD_LENGTH];
 	int count = 0, max = shifts[0];
-
-	sort();
+	
+	char filename[20] = "../dictionary2.txt";
+	openDict(filename);
 	int n;
 	while((fgets(buffer, MAX_WORD_LENGTH, stdin)) != NULL){
 		count++;

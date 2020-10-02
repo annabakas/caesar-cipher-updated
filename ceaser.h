@@ -1,10 +1,12 @@
 #ifndef _CEASER_H_
 
+extern char dictWords[8732][100];
+
 extern int checkOpen(FILE *fp);
 
 extern void readDict();
 
-extern int openDict();
+extern int openDict(char* filename);
 
 extern int sort();
 
