@@ -30,9 +30,6 @@ int main(){
 		fprintf(fp, "%d\n", bestShift());
 
 		clearShifts();
-		if(count == 50){
-			break;
-		}
 	}
 	fclose(fp);
 	return 0;
